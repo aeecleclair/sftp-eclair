@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+adduser --quiet --disabled-password --home $SFTP_HOME --shell /bin/false --ingroup sftp  --gecos "SFTP User"  $SFTP_USER
+echo "$SFTP_USER:$SFTP_PWD" | chpasswd
+
+chmod 755 $SFTP_HOME
+chown root:root $SFTP_HOME
+chmod -R 755 $SFTP_HOME*
+chown -R $SFTP_USER:sftp $SFTP_HOME*
+
+# start SSH daemon
+systemctl restart ssh
+
+
+
+
