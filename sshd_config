@@ -1,6 +1,8 @@
 Port 22
 Protocol 2
 
+PubkeyAuthentication no
+
 # Limit access
 PermitRootLogin no
 X11Forwarding no
