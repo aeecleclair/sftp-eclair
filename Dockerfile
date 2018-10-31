@@ -9,7 +9,6 @@ ENV SFTP_USER = sftp_user\
 RUN apt-get update && \
     apt-get -y install openssh-server && \
     mkdir -p /var/run/sshd && \
-    rm -f /etc/ssh/ssh_host_*key* && \
     rm -rf /var/lib/apt/lists/*
 
 RUN addgroup sftp
