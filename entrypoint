@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e
 
 adduser --quiet --disabled-password --home $SFTP_HOME --shell /bin/false --ingroup sftp  --gecos "SFTP User"  $SFTP_USER
@@ -10,8 +10,5 @@ chmod -R 755 $SFTP_HOME*
 chown -R $SFTP_USER:sftp $SFTP_HOME*
 
 # start SSH daemon
-systemctl restart ssh
-
-
-
+exec /usr/bin/sshd -D -e
 
