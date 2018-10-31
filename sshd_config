@@ -1,0 +1,15 @@
+Port 22
+Protocol 2
+
+# Limit access
+PermitRootLogin no
+X11Forwarding no
+AllowTcpForwarding no
+
+# SFTP
+
+Subsystem sftp internal-sftp
+	Match group sftp
+	ChrootDirectory /home/%u
+	X11Forwarding no
+	AllowTcpForwarding no
