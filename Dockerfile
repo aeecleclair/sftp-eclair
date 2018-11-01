@@ -19,4 +19,3 @@ COPY entrypoint /
 EXPOSE 22
 
 ENTRYPOINT [ "/entrypoint" ]
-
