@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 set -e
 
-adduser --quiet --disabled-password --home $SFTP_HOME --shell /bin/false --ingroup sftp  --gecos "SFTP User"  $SFTP_USER
-echo "$SFTP_USER:$SFTP_PWD" | chpasswd
+if id $SFTP_USER >/dev/null 2>&1; then
+	echo "user already exists"
+else
+	adduser --quiet --disabled-password --home $SFTP_HOME --shell /bin/false --ingroup sftp  --gecos "SFTP User"  $SFTP_USER
+	echo "$SFTP_USER:$SFTP_PWD" | chpasswd
+fi
 
 # start SSH daemon
 /usr/sbin/sshd -D -e
