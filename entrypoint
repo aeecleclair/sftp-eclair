@@ -6,7 +6,11 @@ if id $SFTP_USER >/dev/null 2>&1; then
 else
 	adduser --quiet --disabled-password --home $SFTP_HOME --shell /bin/false --ingroup sftp  --gecos "SFTP User"  $SFTP_USER
 	echo "$SFTP_USER:$SFTP_PWD" | chpasswd
+	mkdir -p $SFTP_HOME/upload
 fi
+
+chmod -R 755 $SFTP_HOME
+chown -R $SFTP_USER:sftp $SFTP_HOME/upload
 
 # start SSH daemon
 /usr/sbin/sshd -D -e
